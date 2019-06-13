@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1b741598126f4dca965dd0b181b2502b" Name="Diagram1" ZoomLevel="55" >
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Role" Width="1.5" PointX="0.75" PointY="1.5" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Users" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Users_tb_Users" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Banks" Width="1.5" PointX="5.375" PointY="14.75" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Beneficiaries" Width="1.5" PointX="9.875" PointY="13.125" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_BusinessApplications" Width="1.5" PointX="12.875" PointY="5.25" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_BusinessCategory" Width="1.5" PointX="8.375" PointY="4.125" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_BusinessOwners" Width="1.5" PointX="10.625" PointY="4.625" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Directors" Width="1.5" PointX="12.875" PointY="1.75" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Disbursements" Width="1.5" PointX="15.125" PointY="11.5" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Guarantors" Width="1.5" PointX="15.125" PointY="3.875" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_InvestmentPackages" Width="2.25" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Investors" Width="1.5" PointX="7.625" PointY="6.875" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Repayments" Width="1.5" PointX="15.125" PointY="7.5" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Beneficiaries_tb_Banks" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessApplications_tb_Banks" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessOwners_tb_Banks" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Investors_tb_Banks" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Beneficiaries_tb_Investors" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessApplications_tb_BusinessOwners" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessApplications_tb_Users" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessApplications_tb_Users1" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Disbursements_tb_BusinessApplications" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Guarantors_tb_BusinessApplications" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Repayments_tb_BusinessApplications" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessOwners_tb_BusinessCategory" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessOwners_tb_Role" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessOwners_tb_Users" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Directors_tb_BusinessOwners" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Investors_tb_Role" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Investors_tb_Users" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Investments" Width="1.5" PointX="9.875" PointY="0.75" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Investments_tb_Investments" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Investments_tb_Investors" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
