@@ -4,6 +4,8 @@ using Investis.Helpers.EncryptionEngine;
 using Investis.Repository.Implementations;
 using Investis.Repository.Interfaces;
 using Investis.ViewModel;
+using Investis.Web.Identity.Repository.Abstract;
+using Investis.Web.Identity.Repository.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Linq;

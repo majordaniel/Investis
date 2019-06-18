@@ -1,7 +1,8 @@
 ﻿using Investis.DomainModel;
 using Investis.DomainModel.GeneratedModels;
 //using Investis.Identity;
-using Investis.Repository.Interfaces;
+//using Investis.Repository.Interfaces;
+using Investis.Web.Identity.Repository.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Investis.Repository.Implementations
+namespace Investis.Web.Identity.Repository.Implementations
 {
     public class UsersRepository : IUsers
     {

@@ -49,13 +49,9 @@
   <ItemGroup>
     <Compile Include="Helpers\EncryptionEngine.cs" />
     <Compile Include="Helpers\SHA256HashGenerator.cs" />
-    <Compile Include="Implementations\AccessRepository.cs" />
     <Compile Include="Implementations\LoanApplicationRepository.cs" />
-    <Compile Include="Implementations\UsersRepository.cs" />
-    <Compile Include="Interfaces\IAccess.cs" />
     <Compile Include="Interfaces\IInvestment.cs" />
     <Compile Include="Interfaces\ILoanApplication.cs" />
-    <Compile Include="Interfaces\IUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
