@@ -8,65 +8,79 @@
 
 @Styles.Render("~/Content/bundle")
 @Scripts.Render("~/Scripts/bundle")
-<h2>Register</h2>
+
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            @Html.LabelFor(temp => temp.Username)
-            @Html.TextBoxFor(temp => temp.Username, new { placeholder = "Username", @class = "form-control" })
-            @Html.ValidationMessageFor(temp => temp.Username)
-        </div>
-        <div class="form-group col-md-6">
-            @Html.LabelFor(temp => temp.Password)
-            @Html.PasswordFor(temp => temp.Password, new { placeholder = "Password", @class = "form-control" })
-            @Html.ValidationMessageFor(temp => temp.Password)
-        </div>
-        <div class="form-group col-md-6">
-            @Html.LabelFor(temp => temp.ConfirmPassword)
-            @Html.PasswordFor(temp => temp.ConfirmPassword, new { placeholder = "Confirm Password", @class = "form-control" })
-            @Html.ValidationMessageFor(temp => temp.ConfirmPassword)
-        </div>
-
-        <div class="form-group col-md-6">
-            @Html.LabelFor(temp => temp.Email)
-            @Html.TextBoxFor(temp => temp.Email, new { placeholder = "Email", @class = "form-control" })
-            @Html.ValidationMessageFor(temp => temp.Email)
-        </div>
-
-        <div class="form-group col-md-6">
-            @Html.LabelFor(temp => temp.Mobile)
-            @Html.TextBoxFor(temp => temp.Mobile, new { placeholder = "Mobile", @class = "form-control" })
-            @Html.ValidationMessageFor(temp => temp.Mobile)
-        </div>
-
-        <div class="form-group col-md-6">
-            @Html.LabelFor(temp => temp.BusinessName)
-            @Html.TextBoxFor(temp => temp.BusinessName, new { placeholder = "BusinessName", @class = "form-control" })
-            @Html.ValidationMessageFor(temp => temp.BusinessName)
-        </div>
-
-        <div class="form-group col-md-12">
-            @Html.LabelFor(temp => temp.Address)
-            @Html.TextAreaFor(temp => temp.Address, new { placeholder = "Address", @class = "form-control" })
-            @Html.ValidationMessageFor(temp => temp.Address)
-        </div>
-
-        <div class="form-group col-md-6">
-            @Html.LabelFor(temp => temp.City)
-            @Html.TextBoxFor(temp => temp.City, new { placeholder = "City", @class = "form-control" })
-            @Html.ValidationMessageFor(temp => temp.City)
-        </div>
-
-        <div class="form-group col-md-6">
-            @Html.LabelFor(temp => temp.CountryID)
-            @Html.TextBoxFor(temp => temp.CountryID, new { placeholder = "Country", @class = "form-control" })
-            @Html.ValidationMessageFor(temp => temp.CountryID)
-        </div>
+<div class="form-row container-fluid">
+   
+    <div class="form-group col-md-6">
+        @*@Html.LabelFor(temp => temp.Username)*@
+        @Html.TextBoxFor(temp => temp.Username, new { placeholder = "Username", @class = "form-control" })
+        @Html.ValidationMessageFor(temp => temp.Username)
+    </div>
+    <div class="form-group col-md-6">
+        @*@Html.LabelFor(temp => temp.Password)*@
+        @Html.PasswordFor(temp => temp.Password, new { placeholder = "Password", @class = "form-control" })
+        @Html.ValidationMessageFor(temp => temp.Password)
+    </div>
+    <div class="form-group col-md-6">
+        @*@Html.LabelFor(temp => temp.ConfirmPassword)*@
+        @Html.PasswordFor(temp => temp.ConfirmPassword, new { placeholder = "Confirm Password", @class = "form-control" })
+        @Html.ValidationMessageFor(temp => temp.ConfirmPassword)
     </div>
 
-    @Html.ValidationSummary()
+    <div class="form-group col-md-6">
+        @*@Html.LabelFor(temp => temp.Email)*@
+        @Html.TextBoxFor(temp => temp.Email, new { placeholder = "Email", @class = "form-control" })
+        @Html.ValidationMessageFor(temp => temp.Email)
+    </div>
 
-    <button type="submit" class="btn btn-success">Register</button>
-}
-    <a href="/Account/Login" class="btn btn-success">Login</a>
+    <div class="form-group col-md-6">
+        @*@Html.LabelFor(temp => temp.Mobile)*@
+        @Html.TextBoxFor(temp => temp.Mobile, new { placeholder = "Mobile", @class = "form-control" })
+        @Html.ValidationMessageFor(temp => temp.Mobile)
+    </div>
+
+    <div class="form-group col-md-6">
+        @*@Html.LabelFor(temp => temp.BusinessName)*@
+        @Html.TextBoxFor(temp => temp.BusinessName, new { placeholder = "BusinessName", @class = "form-control" })
+        @Html.ValidationMessageFor(temp => temp.BusinessName)
+    </div>
+
+    <div class="form-group col-md-12">
+        @*@Html.LabelFor(temp => temp.Address)*@
+        @Html.TextAreaFor(temp => temp.Address, new { placeholder = "Address", @class = "form-control" })
+        @Html.ValidationMessageFor(temp => temp.Address)
+    </div>
+
+    <div class="form-group col-md-6">
+        @*@Html.LabelFor(temp => temp.City)*@
+        @Html.TextBoxFor(temp => temp.City, new { placeholder = "City", @class = "form-control" })
+        @Html.ValidationMessageFor(temp => temp.City)
+    </div>
+
+    <div class="form-group col-md-6">
+        @*@Html.LabelFor(temp => temp.City)*@
+        @Html.TextBoxFor(temp => temp.CountryID, new { placeholder = "Country", @class = "form-control" })
+
+        @*@Html.DropDownListFor(temp => temp.CountryID, ViewBag.VCountryList as SelectList, "---Select Country---", new { @id = "CountryID", @class = "form-control" })*@
+        @Html.ValidationMessageFor(temp => temp.CountryID)
+    </div>
+
+    @*<div class="form-group col-md-6">
+             @Html.LabelFor(temp => temp.CountryID)
+             Html.TextBoxFor(temp => temp.CountryID, new { placeholder = "Country", @class = "form-control" })
+             @Html.ValidationMessageFor(temp => temp.CountryID)
+
+            @ @Html.DropDownListFor(Model => Model.CountryID, ViewBag.VCountryList as SelectList, "---Select Country---", new { @id = "CountryID", @class = "form-control" })
+             @Html.ValidationMessageFor(Model => Model.CountryID, "", new { @class = "error" })
+
+    </div>*@
+
+    </div>
+
+            @Html.ValidationSummary()
+
+            <button type="submit" class="btn btn-success">Register</button>
+        }
+

@@ -19,7 +19,6 @@ namespace Investis.DomainModel.GeneratedModels
         {
             this.tb_BusinessApplications = new HashSet<tb_BusinessApplications>();
             this.tb_BusinessApplications1 = new HashSet<tb_BusinessApplications>();
-            this.tb_BusinessOwners = new HashSet<tb_BusinessOwners>();
         }
     
         public int UserID { get; set; }
@@ -31,13 +30,11 @@ namespace Investis.DomainModel.GeneratedModels
         public string Mobile { get; set; }
         public Nullable<bool> IsActive { get; set; }
     
-        public virtual tb_Role tb_Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_BusinessApplications> tb_BusinessApplications { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_BusinessApplications> tb_BusinessApplications1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tb_BusinessOwners> tb_BusinessOwners { get; set; }
         public virtual tb_Investors tb_Investors { get; set; }
+        public virtual tb_Role tb_Role { get; set; }
     }
 }

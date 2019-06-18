@@ -51,6 +51,23 @@
     </style>
 </head>
 <body>
+    @*<div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-3">
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <a href="/Account/Login" class="btn btn-success">Login</a>
+            }
+
+        </div>
+    </div>*@
+
+
     @RenderBody()
     <!-- BEGIN PAGA BACKDROPS-->
     <div class="sidenav-backdrop backdrop"></div>

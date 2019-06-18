@@ -22,7 +22,7 @@ namespace Investis.DomainModel.GeneratedModels
         }
     
         public int InvestorID { get; set; }
-        public Nullable<int> UserID { get; set; }
+        public string UserID { get; set; }
         public Nullable<int> RoleID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -38,9 +38,9 @@ namespace Investis.DomainModel.GeneratedModels
         public virtual tb_Banks tb_Banks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_Beneficiaries> tb_Beneficiaries { get; set; }
-        public virtual tb_Role tb_Role { get; set; }
-        public virtual tb_Users tb_Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_Investments> tb_Investments { get; set; }
+        public virtual tb_Role tb_Role { get; set; }
+        public virtual tb_Users tb_Users { get; set; }
     }
 }

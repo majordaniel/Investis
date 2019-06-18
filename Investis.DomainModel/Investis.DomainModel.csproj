@@ -81,14 +81,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GeneratedModels\AspNetRole.cs">
+      <DependentUpon>GeneratedModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneratedModels\AspNetUser.cs">
+      <DependentUpon>GeneratedModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneratedModels\AspNetUserClaim.cs">
+      <DependentUpon>GeneratedModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneratedModels\AspNetUserLogin.cs">
+      <DependentUpon>GeneratedModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneratedModels\C__MigrationHistory.cs">
+      <DependentUpon>GeneratedModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="GeneratedModels\GeneratedModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GeneratedModel.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="GeneratedModels\GeneratedModel.cs">
-      <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>GeneratedModel.tt</DependentUpon>
     </Compile>
     <Compile Include="GeneratedModels\GeneratedModel.Designer.cs">
@@ -96,7 +111,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GeneratedModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GeneratedModels\tb_Banks.cs">
       <DependentUpon>GeneratedModel.tt</DependentUpon>
     </Compile>
@@ -110,6 +124,9 @@
       <DependentUpon>GeneratedModel.tt</DependentUpon>
     </Compile>
     <Compile Include="GeneratedModels\tb_BusinessOwners.cs">
+      <DependentUpon>GeneratedModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneratedModels\tb_Country.cs">
       <DependentUpon>GeneratedModel.tt</DependentUpon>
     </Compile>
     <Compile Include="GeneratedModels\tb_Directors.cs">
@@ -139,19 +156,21 @@
     <Compile Include="GeneratedModels\tb_Users.cs">
       <DependentUpon>GeneratedModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="GeneratedModels\GeneratedModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>GeneratedModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="GeneratedModels\GeneratedModel.edmx.diagram">
       <DependentUpon>GeneratedModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="GeneratedModels\GeneratedModel.Context.tt">
@@ -164,9 +183,6 @@
       <DependentUpon>GeneratedModel.edmx</DependentUpon>
       <LastGenOutput>GeneratedModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

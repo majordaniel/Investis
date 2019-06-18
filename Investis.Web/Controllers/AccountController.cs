@@ -1,4 +1,5 @@
-﻿using Investis.ViewModel;
+﻿using Investis.Services.HelperServices;
+using Investis.ViewModel;
 using Investis.Web.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
@@ -18,6 +19,11 @@ namespace Investis.Web.Controllers
 
         public ActionResult Register()
         {
+
+            DropDownListsData ddlists = new DropDownListsData();
+            //ViewBag.VCountryList = new SelectList(Countries, "CountryID", "CountryName");
+
+            ViewBag.VCountryList = ddlists.CountryListDropDown();
             return View();
         }
 
@@ -25,6 +31,7 @@ namespace Investis.Web.Controllers
         [HttpPost]
         public ActionResult Register(BusinessRegisterViewModel rvm)
         {
+
             if (ModelState.IsValid)
             {
                 //register

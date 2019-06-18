@@ -17,9 +17,9 @@ namespace Investis.DomainModel.GeneratedModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tb_Role()
         {
-            this.tb_Users = new HashSet<tb_Users>();
             this.tb_BusinessOwners = new HashSet<tb_BusinessOwners>();
             this.tb_Investors = new HashSet<tb_Investors>();
+            this.tb_Users = new HashSet<tb_Users>();
         }
     
         public int RoleID { get; set; }
@@ -27,10 +27,10 @@ namespace Investis.DomainModel.GeneratedModels
         public Nullable<bool> IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tb_Users> tb_Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_BusinessOwners> tb_BusinessOwners { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_Investors> tb_Investors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_Users> tb_Users { get; set; }
     }
 }

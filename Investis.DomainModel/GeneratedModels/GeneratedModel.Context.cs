@@ -9,8 +9,6 @@
 
 namespace Investis.DomainModel.GeneratedModels
 {
- 
-    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
@@ -27,19 +25,25 @@ namespace Investis.DomainModel.GeneratedModels
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tb_Role> tb_Role { get; set; }
-        public virtual DbSet<tb_Users> tb_Users { get; set; }
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<tb_Banks> tb_Banks { get; set; }
         public virtual DbSet<tb_Beneficiaries> tb_Beneficiaries { get; set; }
         public virtual DbSet<tb_BusinessApplications> tb_BusinessApplications { get; set; }
         public virtual DbSet<tb_BusinessCategory> tb_BusinessCategory { get; set; }
         public virtual DbSet<tb_BusinessOwners> tb_BusinessOwners { get; set; }
+        public virtual DbSet<tb_Country> tb_Country { get; set; }
         public virtual DbSet<tb_Directors> tb_Directors { get; set; }
         public virtual DbSet<tb_Disbursements> tb_Disbursements { get; set; }
         public virtual DbSet<tb_Guarantors> tb_Guarantors { get; set; }
         public virtual DbSet<tb_InvestmentPackages> tb_InvestmentPackages { get; set; }
+        public virtual DbSet<tb_Investments> tb_Investments { get; set; }
         public virtual DbSet<tb_Investors> tb_Investors { get; set; }
         public virtual DbSet<tb_Repayments> tb_Repayments { get; set; }
-        public virtual DbSet<tb_Investments> tb_Investments { get; set; }
+        public virtual DbSet<tb_Role> tb_Role { get; set; }
+        public virtual DbSet<tb_Users> tb_Users { get; set; }
     }
 }

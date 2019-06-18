@@ -4,41 +4,50 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1b741598126f4dca965dd0b181b2502b" Name="Diagram1" ZoomLevel="55" >
-        <EntityTypeShape EntityType="InvestisDBModel.tb_Role" Width="1.5" PointX="0.75" PointY="1.5" />
-        <EntityTypeShape EntityType="InvestisDBModel.tb_Users" Width="1.5" PointX="3" PointY="1" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_Users_tb_Users" />
-        <EntityTypeShape EntityType="InvestisDBModel.tb_Banks" Width="1.5" PointX="5.375" PointY="14.75" />
-        <EntityTypeShape EntityType="InvestisDBModel.tb_Beneficiaries" Width="1.5" PointX="9.875" PointY="13.125" />
-        <EntityTypeShape EntityType="InvestisDBModel.tb_BusinessApplications" Width="1.5" PointX="12.875" PointY="5.25" />
-        <EntityTypeShape EntityType="InvestisDBModel.tb_BusinessCategory" Width="1.5" PointX="8.375" PointY="4.125" />
-        <EntityTypeShape EntityType="InvestisDBModel.tb_BusinessOwners" Width="1.5" PointX="10.625" PointY="4.625" />
-        <EntityTypeShape EntityType="InvestisDBModel.tb_Directors" Width="1.5" PointX="12.875" PointY="1.75" />
-        <EntityTypeShape EntityType="InvestisDBModel.tb_Disbursements" Width="1.5" PointX="15.125" PointY="11.5" />
-        <EntityTypeShape EntityType="InvestisDBModel.tb_Guarantors" Width="1.5" PointX="15.125" PointY="3.875" />
-        <EntityTypeShape EntityType="InvestisDBModel.tb_InvestmentPackages" Width="2.25" PointX="5.375" PointY="0.75" />
-        <EntityTypeShape EntityType="InvestisDBModel.tb_Investors" Width="1.5" PointX="7.625" PointY="6.875" />
-        <EntityTypeShape EntityType="InvestisDBModel.tb_Repayments" Width="1.5" PointX="15.125" PointY="7.5" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_Beneficiaries_tb_Banks" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessApplications_tb_Banks" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessOwners_tb_Banks" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_Investors_tb_Banks" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_Beneficiaries_tb_Investors" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessApplications_tb_BusinessOwners" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessApplications_tb_Users" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessApplications_tb_Users1" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_Disbursements_tb_BusinessApplications" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_Guarantors_tb_BusinessApplications" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_Repayments_tb_BusinessApplications" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessOwners_tb_BusinessCategory" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessOwners_tb_Role" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessOwners_tb_Users" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_Directors_tb_BusinessOwners" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_Investors_tb_Role" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_Investors_tb_Users" />
-        <EntityTypeShape EntityType="InvestisDBModel.tb_Investments" Width="1.5" PointX="9.875" PointY="0.75" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_Investments_tb_Investments" />
-        <AssociationConnector Association="InvestisDBModel.FK_tb_Investments_tb_Investors" />
+      <Diagram DiagramId="f70ece7a931c400ebfbea89e655efadb" Name="Diagram1">
+        <EntityTypeShape EntityType="InvestisDBModel.C__MigrationHistory" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.AspNetRole" Width="1.5" PointX="1.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.AspNetUserClaim" Width="1.5" PointX="3" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.AspNetUserLogin" Width="1.5" PointX="3" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.AspNetUser" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Banks" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Beneficiaries" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_BusinessApplications" Width="1.5" PointX="6" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_BusinessCategory" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_BusinessOwners" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Country" Width="1.5" PointX="3.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Directors" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Disbursements" Width="1.5" PointX="8.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Guarantors" Width="1.5" PointX="8.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_InvestmentPackages" Width="1.5" PointX="3" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Investments" Width="1.5" PointX="5.25" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Investors" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Repayments" Width="1.5" PointX="8.25" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Role" Width="1.5" PointX="0.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Users" Width="1.5" PointX="3.75" PointY="24.375" IsExpanded="true" />
+        <AssociationConnector Association="InvestisDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessOwners_tb_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Beneficiaries_tb_Banks" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessApplications_tb_Banks" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessOwners_tb_Banks" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Investors_tb_Banks" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Beneficiaries_tb_Investors" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessApplications_tb_BusinessOwners" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessApplications_tb_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessApplications_tb_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Disbursements_tb_BusinessApplications" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Guarantors_tb_BusinessApplications" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Repayments_tb_BusinessApplications" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessOwners_tb_BusinessCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_BusinessOwners_tb_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Directors_tb_BusinessOwners" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Investments_tb_Investments" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Investments_tb_Investors" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Investors_tb_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Investors_tb_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.FK_tb_Users_tb_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="InvestisDBModel.AspNetUserRoles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

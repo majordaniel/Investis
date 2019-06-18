@@ -15,13 +15,13 @@ namespace Investis.DomainModel.GeneratedModels
     public partial class tb_Investments
     {
         public int InvestmentID { get; set; }
+        public Nullable<int> InvestorID { get; set; }
         public Nullable<int> InvestmentPackageID { get; set; }
         public string InvestmentAmt { get; set; }
         public Nullable<System.DateTime> InvestmentDate { get; set; }
         public Nullable<System.DateTime> ExpectedMaturityDate { get; set; }
         public string Status { get; set; }
         public Nullable<bool> IsActive { get; set; }
-        public Nullable<int> InvestorID { get; set; }
     
         public virtual tb_InvestmentPackages tb_InvestmentPackages { get; set; }
         public virtual tb_Investors tb_Investors { get; set; }

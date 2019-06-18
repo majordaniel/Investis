@@ -4,7 +4,75 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="InvestisDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="InvestisDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="DivisionID" Type="int" Nullable="false" />
+          <Property Name="BranchID" Type="int" Nullable="false" />
+          <Property Name="DeptID" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="BusinessName" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="CountryID" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="tb_Banks">
           <Key>
             <PropertyRef Name="BankID" />
@@ -75,7 +143,7 @@
             <PropertyRef Name="BusinessID" />
           </Key>
           <Property Name="BusinessID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserID" Type="int" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" />
           <Property Name="RoleID" Type="int" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
           <Property Name="Address1" Type="varchar" MaxLength="50" />
@@ -98,6 +166,13 @@
           <Property Name="IsAccepted" Type="bit" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tb_Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="tb_Directors">
           <Key>
@@ -155,20 +230,20 @@
             <PropertyRef Name="InvestmentID" />
           </Key>
           <Property Name="InvestmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvestorID" Type="int" />
           <Property Name="InvestmentPackageID" Type="int" />
           <Property Name="InvestmentAmt" Type="varchar" MaxLength="50" />
           <Property Name="InvestmentDate" Type="datetime" />
           <Property Name="ExpectedMaturityDate" Type="datetime" />
           <Property Name="Status" Type="varchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="InvestorID" Type="int" />
         </EntityType>
         <EntityType Name="tb_Investors">
           <Key>
             <PropertyRef Name="InvestorID" />
           </Key>
-          <Property Name="InvestorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserID" Type="int" />
+          <Property Name="InvestorID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" />
           <Property Name="RoleID" Type="int" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="LastName" Type="varchar" MaxLength="50" />
@@ -208,7 +283,7 @@
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="500" />
           <Property Name="HashPassword" Type="varchar" MaxLength="500" />
           <Property Name="FullName" Type="varchar" MaxLength="500" />
@@ -217,6 +292,62 @@
           <Property Name="Mobile" Type="varchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tb_Beneficiaries_tb_Banks">
           <End Role="tb_Banks" Type="Self.tb_Banks" Multiplicity="0..1" />
           <End Role="tb_Beneficiaries" Type="Self.tb_Beneficiaries" Multiplicity="*" />
@@ -326,11 +457,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tb_BusinessOwners_tb_Users">
-          <End Role="tb_Users" Type="Self.tb_Users" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="tb_BusinessOwners" Type="Self.tb_BusinessOwners" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tb_Users">
-              <PropertyRef Name="UserID" />
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="tb_BusinessOwners">
               <PropertyRef Name="UserID" />
@@ -458,11 +589,18 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="InvestisDBModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_Banks" EntityType="Self.tb_Banks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_Beneficiaries" EntityType="Self.tb_Beneficiaries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_BusinessApplications" EntityType="Self.tb_BusinessApplications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_BusinessCategory" EntityType="Self.tb_BusinessCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_BusinessOwners" EntityType="Self.tb_BusinessOwners" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Country" EntityType="Self.tb_Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_Directors" EntityType="Self.tb_Directors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_Disbursements" EntityType="Self.tb_Disbursements" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_Guarantors" EntityType="Self.tb_Guarantors" Schema="dbo" store:Type="Tables" />
@@ -472,6 +610,22 @@
           <EntitySet Name="tb_Repayments" EntityType="Self.tb_Repayments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_Role" EntityType="Self.tb_Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_Users" EntityType="Self.tb_Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
           <AssociationSet Name="FK_tb_Beneficiaries_tb_Banks" Association="Self.FK_tb_Beneficiaries_tb_Banks">
             <End Role="tb_Banks" EntitySet="tb_Banks" />
             <End Role="tb_Beneficiaries" EntitySet="tb_Beneficiaries" />
@@ -509,7 +663,7 @@
             <End Role="tb_BusinessOwners" EntitySet="tb_BusinessOwners" />
           </AssociationSet>
           <AssociationSet Name="FK_tb_BusinessOwners_tb_Users" Association="Self.FK_tb_BusinessOwners_tb_Users">
-            <End Role="tb_Users" EntitySet="tb_Users" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="tb_BusinessOwners" EntitySet="tb_BusinessOwners" />
           </AssociationSet>
           <AssociationSet Name="FK_tb_Directors_tb_BusinessOwners" Association="Self.FK_tb_Directors_tb_BusinessOwners">
@@ -553,147 +707,78 @@
             <End Role="tb_Users" EntitySet="tb_Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="InvestisDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="InvestisDBEntities" annotation:LazyLoadingEnabled="true" >
-          <EntitySet Name="tb_Role" EntityType="InvestisDBModel.tb_Role" />
-          <EntitySet Name="tb_Users" EntityType="InvestisDBModel.tb_Users" />
-          <AssociationSet Name="FK_tb_Users_tb_Users" Association="InvestisDBModel.FK_tb_Users_tb_Users">
-            <End Role="tb_Role" EntitySet="tb_Role" />
-            <End Role="tb_Users" EntitySet="tb_Users" />
-          </AssociationSet>
-          <EntitySet Name="tb_Banks" EntityType="InvestisDBModel.tb_Banks" />
-          <EntitySet Name="tb_Beneficiaries" EntityType="InvestisDBModel.tb_Beneficiaries" />
-          <EntitySet Name="tb_BusinessApplications" EntityType="InvestisDBModel.tb_BusinessApplications" />
-          <EntitySet Name="tb_BusinessCategory" EntityType="InvestisDBModel.tb_BusinessCategory" />
-          <EntitySet Name="tb_BusinessOwners" EntityType="InvestisDBModel.tb_BusinessOwners" />
-          <EntitySet Name="tb_Directors" EntityType="InvestisDBModel.tb_Directors" />
-          <EntitySet Name="tb_Disbursements" EntityType="InvestisDBModel.tb_Disbursements" />
-          <EntitySet Name="tb_Guarantors" EntityType="InvestisDBModel.tb_Guarantors" />
-          <EntitySet Name="tb_InvestmentPackages" EntityType="InvestisDBModel.tb_InvestmentPackages" />
-          <EntitySet Name="tb_Investors" EntityType="InvestisDBModel.tb_Investors" />
-          <EntitySet Name="tb_Repayments" EntityType="InvestisDBModel.tb_Repayments" />
-          <AssociationSet Name="FK_tb_Beneficiaries_tb_Banks" Association="InvestisDBModel.FK_tb_Beneficiaries_tb_Banks">
-            <End Role="tb_Banks" EntitySet="tb_Banks" />
-            <End Role="tb_Beneficiaries" EntitySet="tb_Beneficiaries" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_BusinessApplications_tb_Banks" Association="InvestisDBModel.FK_tb_BusinessApplications_tb_Banks">
-            <End Role="tb_Banks" EntitySet="tb_Banks" />
-            <End Role="tb_BusinessApplications" EntitySet="tb_BusinessApplications" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_BusinessOwners_tb_Banks" Association="InvestisDBModel.FK_tb_BusinessOwners_tb_Banks">
-            <End Role="tb_Banks" EntitySet="tb_Banks" />
-            <End Role="tb_BusinessOwners" EntitySet="tb_BusinessOwners" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_Investors_tb_Banks" Association="InvestisDBModel.FK_tb_Investors_tb_Banks">
-            <End Role="tb_Banks" EntitySet="tb_Banks" />
-            <End Role="tb_Investors" EntitySet="tb_Investors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_Beneficiaries_tb_Investors" Association="InvestisDBModel.FK_tb_Beneficiaries_tb_Investors">
-            <End Role="tb_Investors" EntitySet="tb_Investors" />
-            <End Role="tb_Beneficiaries" EntitySet="tb_Beneficiaries" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_BusinessApplications_tb_BusinessOwners" Association="InvestisDBModel.FK_tb_BusinessApplications_tb_BusinessOwners">
-            <End Role="tb_BusinessOwners" EntitySet="tb_BusinessOwners" />
-            <End Role="tb_BusinessApplications" EntitySet="tb_BusinessApplications" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_BusinessApplications_tb_Users" Association="InvestisDBModel.FK_tb_BusinessApplications_tb_Users">
-            <End Role="tb_Users" EntitySet="tb_Users" />
-            <End Role="tb_BusinessApplications" EntitySet="tb_BusinessApplications" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_BusinessApplications_tb_Users1" Association="InvestisDBModel.FK_tb_BusinessApplications_tb_Users1">
-            <End Role="tb_Users" EntitySet="tb_Users" />
-            <End Role="tb_BusinessApplications" EntitySet="tb_BusinessApplications" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_Disbursements_tb_BusinessApplications" Association="InvestisDBModel.FK_tb_Disbursements_tb_BusinessApplications">
-            <End Role="tb_BusinessApplications" EntitySet="tb_BusinessApplications" />
-            <End Role="tb_Disbursements" EntitySet="tb_Disbursements" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_Guarantors_tb_BusinessApplications" Association="InvestisDBModel.FK_tb_Guarantors_tb_BusinessApplications">
-            <End Role="tb_BusinessApplications" EntitySet="tb_BusinessApplications" />
-            <End Role="tb_Guarantors" EntitySet="tb_Guarantors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_Repayments_tb_BusinessApplications" Association="InvestisDBModel.FK_tb_Repayments_tb_BusinessApplications">
-            <End Role="tb_BusinessApplications" EntitySet="tb_BusinessApplications" />
-            <End Role="tb_Repayments" EntitySet="tb_Repayments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_BusinessOwners_tb_BusinessCategory" Association="InvestisDBModel.FK_tb_BusinessOwners_tb_BusinessCategory">
-            <End Role="tb_BusinessCategory" EntitySet="tb_BusinessCategory" />
-            <End Role="tb_BusinessOwners" EntitySet="tb_BusinessOwners" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_BusinessOwners_tb_Role" Association="InvestisDBModel.FK_tb_BusinessOwners_tb_Role">
-            <End Role="tb_Role" EntitySet="tb_Role" />
-            <End Role="tb_BusinessOwners" EntitySet="tb_BusinessOwners" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_BusinessOwners_tb_Users" Association="InvestisDBModel.FK_tb_BusinessOwners_tb_Users">
-            <End Role="tb_Users" EntitySet="tb_Users" />
-            <End Role="tb_BusinessOwners" EntitySet="tb_BusinessOwners" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_Directors_tb_BusinessOwners" Association="InvestisDBModel.FK_tb_Directors_tb_BusinessOwners">
-            <End Role="tb_BusinessOwners" EntitySet="tb_BusinessOwners" />
-            <End Role="tb_Directors" EntitySet="tb_Directors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_Investors_tb_Role" Association="InvestisDBModel.FK_tb_Investors_tb_Role">
-            <End Role="tb_Role" EntitySet="tb_Role" />
-            <End Role="tb_Investors" EntitySet="tb_Investors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_Investors_tb_Users" Association="InvestisDBModel.FK_tb_Investors_tb_Users">
-            <End Role="tb_Users" EntitySet="tb_Users" />
-            <End Role="tb_Investors" EntitySet="tb_Investors" />
-          </AssociationSet>
-          <EntitySet Name="tb_Investments" EntityType="InvestisDBModel.tb_Investments" />
-          <AssociationSet Name="FK_tb_Investments_tb_Investments" Association="InvestisDBModel.FK_tb_Investments_tb_Investments">
-            <End Role="tb_InvestmentPackages" EntitySet="tb_InvestmentPackages" />
-            <End Role="tb_Investments" EntitySet="tb_Investments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_Investments_tb_Investors" Association="InvestisDBModel.FK_tb_Investments_tb_Investors">
-            <End Role="tb_Investors" EntitySet="tb_Investors" />
-            <End Role="tb_Investments" EntitySet="tb_Investments" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="tb_Role">
+        <EntityType Name="C__MigrationHistory">
           <Key>
-            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
           </Key>
-          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Role" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="tb_Users" Relationship="InvestisDBModel.FK_tb_Users_tb_Users" FromRole="tb_Role" ToRole="tb_Users" />
-          <NavigationProperty Name="tb_BusinessOwners" Relationship="InvestisDBModel.FK_tb_BusinessOwners_tb_Role" FromRole="tb_Role" ToRole="tb_BusinessOwners" />
-          <NavigationProperty Name="tb_Investors" Relationship="InvestisDBModel.FK_tb_Investors_tb_Role" FromRole="tb_Role" ToRole="tb_Investors" />
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="tb_Users">
+        <EntityType Name="AspNetRole">
           <Key>
-            <PropertyRef Name="UserID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="HashPassword" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="FullName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="RoleID" Type="Int32" />
-          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="tb_Role" Relationship="InvestisDBModel.FK_tb_Users_tb_Users" FromRole="tb_Users" ToRole="tb_Role" />
-          <NavigationProperty Name="tb_BusinessApplications" Relationship="InvestisDBModel.FK_tb_BusinessApplications_tb_Users" FromRole="tb_Users" ToRole="tb_BusinessApplications" />
-          <NavigationProperty Name="tb_BusinessApplications1" Relationship="InvestisDBModel.FK_tb_BusinessApplications_tb_Users1" FromRole="tb_Users" ToRole="tb_BusinessApplications" />
-          <NavigationProperty Name="tb_BusinessOwners" Relationship="InvestisDBModel.FK_tb_BusinessOwners_tb_Users" FromRole="tb_Users" ToRole="tb_BusinessOwners" />
-          <NavigationProperty Name="tb_Investors" Relationship="InvestisDBModel.FK_tb_Investors_tb_Users" FromRole="tb_Users" ToRole="tb_Investors" />
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
         </EntityType>
-        <Association Name="FK_tb_Users_tb_Users">
-          <End Type="InvestisDBModel.tb_Role" Role="tb_Role" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_Users" Role="tb_Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tb_Role">
-              <PropertyRef Name="RoleID" />
-            </Principal>
-            <Dependent Role="tb_Users">
-              <PropertyRef Name="RoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DivisionID" Type="Int32" Nullable="false" />
+          <Property Name="BranchID" Type="Int32" Nullable="false" />
+          <Property Name="DeptID" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BusinessName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CountryID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="tb_BusinessOwners" Relationship="Self.FK_tb_BusinessOwners_tb_Users" FromRole="AspNetUsers" ToRole="tb_BusinessOwners" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
         <EntityType Name="tb_Banks">
           <Key>
             <PropertyRef Name="BankID" />
@@ -701,10 +786,10 @@
           <Property Name="BankID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="tb_Beneficiaries" Relationship="InvestisDBModel.FK_tb_Beneficiaries_tb_Banks" FromRole="tb_Banks" ToRole="tb_Beneficiaries" />
-          <NavigationProperty Name="tb_BusinessApplications" Relationship="InvestisDBModel.FK_tb_BusinessApplications_tb_Banks" FromRole="tb_Banks" ToRole="tb_BusinessApplications" />
-          <NavigationProperty Name="tb_BusinessOwners" Relationship="InvestisDBModel.FK_tb_BusinessOwners_tb_Banks" FromRole="tb_Banks" ToRole="tb_BusinessOwners" />
-          <NavigationProperty Name="tb_Investors" Relationship="InvestisDBModel.FK_tb_Investors_tb_Banks" FromRole="tb_Banks" ToRole="tb_Investors" />
+          <NavigationProperty Name="tb_Beneficiaries" Relationship="Self.FK_tb_Beneficiaries_tb_Banks" FromRole="tb_Banks" ToRole="tb_Beneficiaries" />
+          <NavigationProperty Name="tb_BusinessApplications" Relationship="Self.FK_tb_BusinessApplications_tb_Banks" FromRole="tb_Banks" ToRole="tb_BusinessApplications" />
+          <NavigationProperty Name="tb_BusinessOwners" Relationship="Self.FK_tb_BusinessOwners_tb_Banks" FromRole="tb_Banks" ToRole="tb_BusinessOwners" />
+          <NavigationProperty Name="tb_Investors" Relationship="Self.FK_tb_Investors_tb_Banks" FromRole="tb_Banks" ToRole="tb_Investors" />
         </EntityType>
         <EntityType Name="tb_Beneficiaries">
           <Key>
@@ -722,8 +807,8 @@
           <Property Name="BankID" Type="Int32" />
           <Property Name="SortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="tb_Banks" Relationship="InvestisDBModel.FK_tb_Beneficiaries_tb_Banks" FromRole="tb_Beneficiaries" ToRole="tb_Banks" />
-          <NavigationProperty Name="tb_Investors" Relationship="InvestisDBModel.FK_tb_Beneficiaries_tb_Investors" FromRole="tb_Beneficiaries" ToRole="tb_Investors" />
+          <NavigationProperty Name="tb_Banks" Relationship="Self.FK_tb_Beneficiaries_tb_Banks" FromRole="tb_Beneficiaries" ToRole="tb_Banks" />
+          <NavigationProperty Name="tb_Investors" Relationship="Self.FK_tb_Beneficiaries_tb_Investors" FromRole="tb_Beneficiaries" ToRole="tb_Investors" />
         </EntityType>
         <EntityType Name="tb_BusinessApplications">
           <Key>
@@ -756,13 +841,13 @@
           <Property Name="ExpectedRepaymentEndDate" Type="DateTime" Precision="3" />
           <Property Name="GraceDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="tb_Banks" Relationship="InvestisDBModel.FK_tb_BusinessApplications_tb_Banks" FromRole="tb_BusinessApplications" ToRole="tb_Banks" />
-          <NavigationProperty Name="tb_BusinessOwners" Relationship="InvestisDBModel.FK_tb_BusinessApplications_tb_BusinessOwners" FromRole="tb_BusinessApplications" ToRole="tb_BusinessOwners" />
-          <NavigationProperty Name="tb_Users" Relationship="InvestisDBModel.FK_tb_BusinessApplications_tb_Users" FromRole="tb_BusinessApplications" ToRole="tb_Users" />
-          <NavigationProperty Name="tb_Users1" Relationship="InvestisDBModel.FK_tb_BusinessApplications_tb_Users1" FromRole="tb_BusinessApplications" ToRole="tb_Users" />
-          <NavigationProperty Name="tb_Disbursements" Relationship="InvestisDBModel.FK_tb_Disbursements_tb_BusinessApplications" FromRole="tb_BusinessApplications" ToRole="tb_Disbursements" />
-          <NavigationProperty Name="tb_Guarantors" Relationship="InvestisDBModel.FK_tb_Guarantors_tb_BusinessApplications" FromRole="tb_BusinessApplications" ToRole="tb_Guarantors" />
-          <NavigationProperty Name="tb_Repayments" Relationship="InvestisDBModel.FK_tb_Repayments_tb_BusinessApplications" FromRole="tb_BusinessApplications" ToRole="tb_Repayments" />
+          <NavigationProperty Name="tb_Banks" Relationship="Self.FK_tb_BusinessApplications_tb_Banks" FromRole="tb_BusinessApplications" ToRole="tb_Banks" />
+          <NavigationProperty Name="tb_BusinessOwners" Relationship="Self.FK_tb_BusinessApplications_tb_BusinessOwners" FromRole="tb_BusinessApplications" ToRole="tb_BusinessOwners" />
+          <NavigationProperty Name="tb_Users" Relationship="Self.FK_tb_BusinessApplications_tb_Users" FromRole="tb_BusinessApplications" ToRole="tb_Users" />
+          <NavigationProperty Name="tb_Users1" Relationship="Self.FK_tb_BusinessApplications_tb_Users1" FromRole="tb_BusinessApplications" ToRole="tb_Users" />
+          <NavigationProperty Name="tb_Disbursements" Relationship="Self.FK_tb_Disbursements_tb_BusinessApplications" FromRole="tb_BusinessApplications" ToRole="tb_Disbursements" />
+          <NavigationProperty Name="tb_Guarantors" Relationship="Self.FK_tb_Guarantors_tb_BusinessApplications" FromRole="tb_BusinessApplications" ToRole="tb_Guarantors" />
+          <NavigationProperty Name="tb_Repayments" Relationship="Self.FK_tb_Repayments_tb_BusinessApplications" FromRole="tb_BusinessApplications" ToRole="tb_Repayments" />
         </EntityType>
         <EntityType Name="tb_BusinessCategory">
           <Key>
@@ -771,14 +856,14 @@
           <Property Name="BusinessCatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BusinessCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="tb_BusinessOwners" Relationship="InvestisDBModel.FK_tb_BusinessOwners_tb_BusinessCategory" FromRole="tb_BusinessCategory" ToRole="tb_BusinessOwners" />
+          <NavigationProperty Name="tb_BusinessOwners" Relationship="Self.FK_tb_BusinessOwners_tb_BusinessCategory" FromRole="tb_BusinessCategory" ToRole="tb_BusinessOwners" />
         </EntityType>
         <EntityType Name="tb_BusinessOwners">
           <Key>
             <PropertyRef Name="BusinessID" />
           </Key>
           <Property Name="BusinessID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="Int32" />
+          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="RoleID" Type="Int32" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -801,12 +886,19 @@
           <Property Name="IsAccepted" Type="Boolean" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="tb_Banks" Relationship="InvestisDBModel.FK_tb_BusinessOwners_tb_Banks" FromRole="tb_BusinessOwners" ToRole="tb_Banks" />
-          <NavigationProperty Name="tb_BusinessApplications" Relationship="InvestisDBModel.FK_tb_BusinessApplications_tb_BusinessOwners" FromRole="tb_BusinessOwners" ToRole="tb_BusinessApplications" />
-          <NavigationProperty Name="tb_BusinessCategory" Relationship="InvestisDBModel.FK_tb_BusinessOwners_tb_BusinessCategory" FromRole="tb_BusinessOwners" ToRole="tb_BusinessCategory" />
-          <NavigationProperty Name="tb_Role" Relationship="InvestisDBModel.FK_tb_BusinessOwners_tb_Role" FromRole="tb_BusinessOwners" ToRole="tb_Role" />
-          <NavigationProperty Name="tb_Users" Relationship="InvestisDBModel.FK_tb_BusinessOwners_tb_Users" FromRole="tb_BusinessOwners" ToRole="tb_Users" />
-          <NavigationProperty Name="tb_Directors" Relationship="InvestisDBModel.FK_tb_Directors_tb_BusinessOwners" FromRole="tb_BusinessOwners" ToRole="tb_Directors" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_tb_BusinessOwners_tb_Users" FromRole="tb_BusinessOwners" ToRole="AspNetUsers" />
+          <NavigationProperty Name="tb_Banks" Relationship="Self.FK_tb_BusinessOwners_tb_Banks" FromRole="tb_BusinessOwners" ToRole="tb_Banks" />
+          <NavigationProperty Name="tb_BusinessApplications" Relationship="Self.FK_tb_BusinessApplications_tb_BusinessOwners" FromRole="tb_BusinessOwners" ToRole="tb_BusinessApplications" />
+          <NavigationProperty Name="tb_BusinessCategory" Relationship="Self.FK_tb_BusinessOwners_tb_BusinessCategory" FromRole="tb_BusinessOwners" ToRole="tb_BusinessCategory" />
+          <NavigationProperty Name="tb_Role" Relationship="Self.FK_tb_BusinessOwners_tb_Role" FromRole="tb_BusinessOwners" ToRole="tb_Role" />
+          <NavigationProperty Name="tb_Directors" Relationship="Self.FK_tb_Directors_tb_BusinessOwners" FromRole="tb_BusinessOwners" ToRole="tb_Directors" />
+        </EntityType>
+        <EntityType Name="tb_Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="tb_Directors">
           <Key>
@@ -819,7 +911,7 @@
           <Property Name="Dir_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Dir_Means_of_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="tb_BusinessOwners" Relationship="InvestisDBModel.FK_tb_Directors_tb_BusinessOwners" FromRole="tb_Directors" ToRole="tb_BusinessOwners" />
+          <NavigationProperty Name="tb_BusinessOwners" Relationship="Self.FK_tb_Directors_tb_BusinessOwners" FromRole="tb_Directors" ToRole="tb_BusinessOwners" />
         </EntityType>
         <EntityType Name="tb_Disbursements">
           <Key>
@@ -833,7 +925,7 @@
           <Property Name="DisbursementDate" Type="DateTime" Precision="3" />
           <Property Name="DisbursementComment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tb_BusinessApplications" Relationship="InvestisDBModel.FK_tb_Disbursements_tb_BusinessApplications" FromRole="tb_Disbursements" ToRole="tb_BusinessApplications" />
+          <NavigationProperty Name="tb_BusinessApplications" Relationship="Self.FK_tb_Disbursements_tb_BusinessApplications" FromRole="tb_Disbursements" ToRole="tb_BusinessApplications" />
         </EntityType>
         <EntityType Name="tb_Guarantors">
           <Key>
@@ -848,7 +940,7 @@
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="VerificationDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="tb_BusinessApplications" Relationship="InvestisDBModel.FK_tb_Guarantors_tb_BusinessApplications" FromRole="tb_Guarantors" ToRole="tb_BusinessApplications" />
+          <NavigationProperty Name="tb_BusinessApplications" Relationship="Self.FK_tb_Guarantors_tb_BusinessApplications" FromRole="tb_Guarantors" ToRole="tb_BusinessApplications" />
         </EntityType>
         <EntityType Name="tb_InvestmentPackages">
           <Key>
@@ -861,14 +953,29 @@
           <Property Name="MinInvestmentDuration" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="InterestPerMonth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="tb_Investments" Relationship="InvestisDBModel.FK_tb_Investments_tb_Investments" FromRole="tb_InvestmentPackages" ToRole="tb_Investments" />
+          <NavigationProperty Name="tb_Investments" Relationship="Self.FK_tb_Investments_tb_Investments" FromRole="tb_InvestmentPackages" ToRole="tb_Investments" />
+        </EntityType>
+        <EntityType Name="tb_Investments">
+          <Key>
+            <PropertyRef Name="InvestmentID" />
+          </Key>
+          <Property Name="InvestmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvestorID" Type="Int32" />
+          <Property Name="InvestmentPackageID" Type="Int32" />
+          <Property Name="InvestmentAmt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InvestmentDate" Type="DateTime" Precision="3" />
+          <Property Name="ExpectedMaturityDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="tb_InvestmentPackages" Relationship="Self.FK_tb_Investments_tb_Investments" FromRole="tb_Investments" ToRole="tb_InvestmentPackages" />
+          <NavigationProperty Name="tb_Investors" Relationship="Self.FK_tb_Investments_tb_Investors" FromRole="tb_Investments" ToRole="tb_Investors" />
         </EntityType>
         <EntityType Name="tb_Investors">
           <Key>
             <PropertyRef Name="InvestorID" />
           </Key>
-          <Property Name="InvestorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="Int32" />
+          <Property Name="InvestorID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="RoleID" Type="Int32" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -880,11 +987,11 @@
           <Property Name="SortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AccountName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="tb_Banks" Relationship="InvestisDBModel.FK_tb_Investors_tb_Banks" FromRole="tb_Investors" ToRole="tb_Banks" />
-          <NavigationProperty Name="tb_Beneficiaries" Relationship="InvestisDBModel.FK_tb_Beneficiaries_tb_Investors" FromRole="tb_Investors" ToRole="tb_Beneficiaries" />
-          <NavigationProperty Name="tb_Role" Relationship="InvestisDBModel.FK_tb_Investors_tb_Role" FromRole="tb_Investors" ToRole="tb_Role" />
-          <NavigationProperty Name="tb_Users" Relationship="InvestisDBModel.FK_tb_Investors_tb_Users" FromRole="tb_Investors" ToRole="tb_Users" />
-          <NavigationProperty Name="tb_Investments" Relationship="InvestisDBModel.FK_tb_Investments_tb_Investors" FromRole="tb_Investors" ToRole="tb_Investments" />
+          <NavigationProperty Name="tb_Banks" Relationship="Self.FK_tb_Investors_tb_Banks" FromRole="tb_Investors" ToRole="tb_Banks" />
+          <NavigationProperty Name="tb_Beneficiaries" Relationship="Self.FK_tb_Beneficiaries_tb_Investors" FromRole="tb_Investors" ToRole="tb_Beneficiaries" />
+          <NavigationProperty Name="tb_Investments" Relationship="Self.FK_tb_Investments_tb_Investors" FromRole="tb_Investors" ToRole="tb_Investments" />
+          <NavigationProperty Name="tb_Role" Relationship="Self.FK_tb_Investors_tb_Role" FromRole="tb_Investors" ToRole="tb_Role" />
+          <NavigationProperty Name="tb_Users" Relationship="Self.FK_tb_Investors_tb_Users" FromRole="tb_Investors" ToRole="tb_Users" />
         </EntityType>
         <EntityType Name="tb_Repayments">
           <Key>
@@ -900,11 +1007,79 @@
           <Property Name="ExpectedRepaymentEndDate" Type="DateTime" Precision="3" />
           <Property Name="RepaymentComment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tb_BusinessApplications" Relationship="InvestisDBModel.FK_tb_Repayments_tb_BusinessApplications" FromRole="tb_Repayments" ToRole="tb_BusinessApplications" />
+          <NavigationProperty Name="tb_BusinessApplications" Relationship="Self.FK_tb_Repayments_tb_BusinessApplications" FromRole="tb_Repayments" ToRole="tb_BusinessApplications" />
         </EntityType>
+        <EntityType Name="tb_Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="tb_BusinessOwners" Relationship="Self.FK_tb_BusinessOwners_tb_Role" FromRole="tb_Role" ToRole="tb_BusinessOwners" />
+          <NavigationProperty Name="tb_Investors" Relationship="Self.FK_tb_Investors_tb_Role" FromRole="tb_Role" ToRole="tb_Investors" />
+          <NavigationProperty Name="tb_Users" Relationship="Self.FK_tb_Users_tb_Users" FromRole="tb_Role" ToRole="tb_Users" />
+        </EntityType>
+        <EntityType Name="tb_Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="HashPassword" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RoleID" Type="Int32" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="tb_BusinessApplications" Relationship="Self.FK_tb_BusinessApplications_tb_Users" FromRole="tb_Users" ToRole="tb_BusinessApplications" />
+          <NavigationProperty Name="tb_BusinessApplications1" Relationship="Self.FK_tb_BusinessApplications_tb_Users1" FromRole="tb_Users" ToRole="tb_BusinessApplications" />
+          <NavigationProperty Name="tb_Investors" Relationship="Self.FK_tb_Investors_tb_Users" FromRole="tb_Users" ToRole="tb_Investors" />
+          <NavigationProperty Name="tb_Role" Relationship="Self.FK_tb_Users_tb_Users" FromRole="tb_Users" ToRole="tb_Role" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_BusinessOwners_tb_Users">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="tb_BusinessOwners" Type="Self.tb_BusinessOwners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_BusinessOwners">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tb_Beneficiaries_tb_Banks">
-          <End Type="InvestisDBModel.tb_Banks" Role="tb_Banks" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_Beneficiaries" Role="tb_Beneficiaries" Multiplicity="*" />
+          <End Role="tb_Banks" Type="Self.tb_Banks" Multiplicity="0..1" />
+          <End Role="tb_Beneficiaries" Type="Self.tb_Beneficiaries" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_Banks">
               <PropertyRef Name="BankID" />
@@ -915,8 +1090,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tb_BusinessApplications_tb_Banks">
-          <End Type="InvestisDBModel.tb_Banks" Role="tb_Banks" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_BusinessApplications" Role="tb_BusinessApplications" Multiplicity="*" />
+          <End Role="tb_Banks" Type="Self.tb_Banks" Multiplicity="0..1" />
+          <End Role="tb_BusinessApplications" Type="Self.tb_BusinessApplications" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_Banks">
               <PropertyRef Name="BankID" />
@@ -927,8 +1102,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tb_BusinessOwners_tb_Banks">
-          <End Type="InvestisDBModel.tb_Banks" Role="tb_Banks" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_BusinessOwners" Role="tb_BusinessOwners" Multiplicity="*" />
+          <End Role="tb_Banks" Type="Self.tb_Banks" Multiplicity="0..1" />
+          <End Role="tb_BusinessOwners" Type="Self.tb_BusinessOwners" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_Banks">
               <PropertyRef Name="BankID" />
@@ -939,8 +1114,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tb_Investors_tb_Banks">
-          <End Type="InvestisDBModel.tb_Banks" Role="tb_Banks" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_Investors" Role="tb_Investors" Multiplicity="*" />
+          <End Role="tb_Banks" Type="Self.tb_Banks" Multiplicity="0..1" />
+          <End Role="tb_Investors" Type="Self.tb_Investors" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_Banks">
               <PropertyRef Name="BankID" />
@@ -951,8 +1126,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tb_Beneficiaries_tb_Investors">
-          <End Type="InvestisDBModel.tb_Investors" Role="tb_Investors" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_Beneficiaries" Role="tb_Beneficiaries" Multiplicity="*" />
+          <End Role="tb_Investors" Type="Self.tb_Investors" Multiplicity="0..1" />
+          <End Role="tb_Beneficiaries" Type="Self.tb_Beneficiaries" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_Investors">
               <PropertyRef Name="InvestorID" />
@@ -963,8 +1138,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tb_BusinessApplications_tb_BusinessOwners">
-          <End Type="InvestisDBModel.tb_BusinessOwners" Role="tb_BusinessOwners" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_BusinessApplications" Role="tb_BusinessApplications" Multiplicity="*" />
+          <End Role="tb_BusinessOwners" Type="Self.tb_BusinessOwners" Multiplicity="0..1" />
+          <End Role="tb_BusinessApplications" Type="Self.tb_BusinessApplications" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_BusinessOwners">
               <PropertyRef Name="BusinessID" />
@@ -975,8 +1150,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tb_BusinessApplications_tb_Users">
-          <End Type="InvestisDBModel.tb_Users" Role="tb_Users" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_BusinessApplications" Role="tb_BusinessApplications" Multiplicity="*" />
+          <End Role="tb_Users" Type="Self.tb_Users" Multiplicity="0..1" />
+          <End Role="tb_BusinessApplications" Type="Self.tb_BusinessApplications" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_Users">
               <PropertyRef Name="UserID" />
@@ -987,8 +1162,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tb_BusinessApplications_tb_Users1">
-          <End Type="InvestisDBModel.tb_Users" Role="tb_Users" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_BusinessApplications" Role="tb_BusinessApplications" Multiplicity="*" />
+          <End Role="tb_Users" Type="Self.tb_Users" Multiplicity="0..1" />
+          <End Role="tb_BusinessApplications" Type="Self.tb_BusinessApplications" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_Users">
               <PropertyRef Name="UserID" />
@@ -999,8 +1174,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tb_Disbursements_tb_BusinessApplications">
-          <End Type="InvestisDBModel.tb_BusinessApplications" Role="tb_BusinessApplications" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_Disbursements" Role="tb_Disbursements" Multiplicity="*" />
+          <End Role="tb_BusinessApplications" Type="Self.tb_BusinessApplications" Multiplicity="0..1" />
+          <End Role="tb_Disbursements" Type="Self.tb_Disbursements" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_BusinessApplications">
               <PropertyRef Name="AppID" />
@@ -1011,8 +1186,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tb_Guarantors_tb_BusinessApplications">
-          <End Type="InvestisDBModel.tb_BusinessApplications" Role="tb_BusinessApplications" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_Guarantors" Role="tb_Guarantors" Multiplicity="*" />
+          <End Role="tb_BusinessApplications" Type="Self.tb_BusinessApplications" Multiplicity="0..1" />
+          <End Role="tb_Guarantors" Type="Self.tb_Guarantors" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_BusinessApplications">
               <PropertyRef Name="AppID" />
@@ -1023,8 +1198,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tb_Repayments_tb_BusinessApplications">
-          <End Type="InvestisDBModel.tb_BusinessApplications" Role="tb_BusinessApplications" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_Repayments" Role="tb_Repayments" Multiplicity="*" />
+          <End Role="tb_BusinessApplications" Type="Self.tb_BusinessApplications" Multiplicity="0..1" />
+          <End Role="tb_Repayments" Type="Self.tb_Repayments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_BusinessApplications">
               <PropertyRef Name="AppID" />
@@ -1035,8 +1210,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tb_BusinessOwners_tb_BusinessCategory">
-          <End Type="InvestisDBModel.tb_BusinessCategory" Role="tb_BusinessCategory" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_BusinessOwners" Role="tb_BusinessOwners" Multiplicity="*" />
+          <End Role="tb_BusinessCategory" Type="Self.tb_BusinessCategory" Multiplicity="0..1" />
+          <End Role="tb_BusinessOwners" Type="Self.tb_BusinessOwners" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_BusinessCategory">
               <PropertyRef Name="BusinessCatID" />
@@ -1047,8 +1222,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tb_BusinessOwners_tb_Role">
-          <End Type="InvestisDBModel.tb_Role" Role="tb_Role" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_BusinessOwners" Role="tb_BusinessOwners" Multiplicity="*" />
+          <End Role="tb_Role" Type="Self.tb_Role" Multiplicity="0..1" />
+          <End Role="tb_BusinessOwners" Type="Self.tb_BusinessOwners" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_Role">
               <PropertyRef Name="RoleID" />
@@ -1058,21 +1233,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tb_BusinessOwners_tb_Users">
-          <End Type="InvestisDBModel.tb_Users" Role="tb_Users" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_BusinessOwners" Role="tb_BusinessOwners" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tb_Users">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="tb_BusinessOwners">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tb_Directors_tb_BusinessOwners">
-          <End Type="InvestisDBModel.tb_BusinessOwners" Role="tb_BusinessOwners" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_Directors" Role="tb_Directors" Multiplicity="*" />
+          <End Role="tb_BusinessOwners" Type="Self.tb_BusinessOwners" Multiplicity="0..1" />
+          <End Role="tb_Directors" Type="Self.tb_Directors" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_BusinessOwners">
               <PropertyRef Name="BusinessID" />
@@ -1082,48 +1245,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tb_Investors_tb_Role">
-          <End Type="InvestisDBModel.tb_Role" Role="tb_Role" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_Investors" Role="tb_Investors" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tb_Role">
-              <PropertyRef Name="RoleID" />
-            </Principal>
-            <Dependent Role="tb_Investors">
-              <PropertyRef Name="RoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tb_Investors_tb_Users">
-          <End Type="InvestisDBModel.tb_Users" Role="tb_Users" Multiplicity="1" />
-          <End Type="InvestisDBModel.tb_Investors" Role="tb_Investors" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="tb_Users">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="tb_Investors">
-              <PropertyRef Name="InvestorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="tb_Investments">
-          <Key>
-            <PropertyRef Name="InvestmentID" />
-          </Key>
-          <Property Name="InvestmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InvestmentPackageID" Type="Int32" />
-          <Property Name="InvestmentAmt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="InvestmentDate" Type="DateTime" Precision="3" />
-          <Property Name="ExpectedMaturityDate" Type="DateTime" Precision="3" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="InvestorID" Type="Int32" />
-          <NavigationProperty Name="tb_InvestmentPackages" Relationship="InvestisDBModel.FK_tb_Investments_tb_Investments" FromRole="tb_Investments" ToRole="tb_InvestmentPackages" />
-          <NavigationProperty Name="tb_Investors" Relationship="InvestisDBModel.FK_tb_Investments_tb_Investors" FromRole="tb_Investments" ToRole="tb_Investors" />
-        </EntityType>
         <Association Name="FK_tb_Investments_tb_Investments">
-          <End Type="InvestisDBModel.tb_InvestmentPackages" Role="tb_InvestmentPackages" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_Investments" Role="tb_Investments" Multiplicity="*" />
+          <End Role="tb_InvestmentPackages" Type="Self.tb_InvestmentPackages" Multiplicity="0..1" />
+          <End Role="tb_Investments" Type="Self.tb_Investments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_InvestmentPackages">
               <PropertyRef Name="InvestmentPackageID" />
@@ -1134,8 +1258,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tb_Investments_tb_Investors">
-          <End Type="InvestisDBModel.tb_Investors" Role="tb_Investors" Multiplicity="0..1" />
-          <End Type="InvestisDBModel.tb_Investments" Role="tb_Investments" Multiplicity="*" />
+          <End Role="tb_Investors" Type="Self.tb_Investors" Multiplicity="0..1" />
+          <End Role="tb_Investments" Type="Self.tb_Investments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_Investors">
               <PropertyRef Name="InvestorID" />
@@ -1145,238 +1269,470 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tb_Investors_tb_Role">
+          <End Role="tb_Role" Type="Self.tb_Role" Multiplicity="0..1" />
+          <End Role="tb_Investors" Type="Self.tb_Investors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="tb_Investors">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Investors_tb_Users">
+          <End Role="tb_Users" Type="Self.tb_Users" Multiplicity="1" />
+          <End Role="tb_Investors" Type="Self.tb_Investors" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tb_Investors">
+              <PropertyRef Name="InvestorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Users_tb_Users">
+          <End Role="tb_Role" Type="Self.tb_Role" Multiplicity="0..1" />
+          <End Role="tb_Users" Type="Self.tb_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="tb_Users">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="InvestisDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="tb_Banks" EntityType="Self.tb_Banks" />
+          <EntitySet Name="tb_Beneficiaries" EntityType="Self.tb_Beneficiaries" />
+          <EntitySet Name="tb_BusinessApplications" EntityType="Self.tb_BusinessApplications" />
+          <EntitySet Name="tb_BusinessCategory" EntityType="Self.tb_BusinessCategory" />
+          <EntitySet Name="tb_BusinessOwners" EntityType="Self.tb_BusinessOwners" />
+          <EntitySet Name="tb_Country" EntityType="Self.tb_Country" />
+          <EntitySet Name="tb_Directors" EntityType="Self.tb_Directors" />
+          <EntitySet Name="tb_Disbursements" EntityType="Self.tb_Disbursements" />
+          <EntitySet Name="tb_Guarantors" EntityType="Self.tb_Guarantors" />
+          <EntitySet Name="tb_InvestmentPackages" EntityType="Self.tb_InvestmentPackages" />
+          <EntitySet Name="tb_Investments" EntityType="Self.tb_Investments" />
+          <EntitySet Name="tb_Investors" EntityType="Self.tb_Investors" />
+          <EntitySet Name="tb_Repayments" EntityType="Self.tb_Repayments" />
+          <EntitySet Name="tb_Role" EntityType="Self.tb_Role" />
+          <EntitySet Name="tb_Users" EntityType="Self.tb_Users" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_BusinessOwners_tb_Users" Association="Self.FK_tb_BusinessOwners_tb_Users">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="tb_BusinessOwners" EntitySet="tb_BusinessOwners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Beneficiaries_tb_Banks" Association="Self.FK_tb_Beneficiaries_tb_Banks">
+            <End Role="tb_Banks" EntitySet="tb_Banks" />
+            <End Role="tb_Beneficiaries" EntitySet="tb_Beneficiaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_BusinessApplications_tb_Banks" Association="Self.FK_tb_BusinessApplications_tb_Banks">
+            <End Role="tb_Banks" EntitySet="tb_Banks" />
+            <End Role="tb_BusinessApplications" EntitySet="tb_BusinessApplications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_BusinessOwners_tb_Banks" Association="Self.FK_tb_BusinessOwners_tb_Banks">
+            <End Role="tb_Banks" EntitySet="tb_Banks" />
+            <End Role="tb_BusinessOwners" EntitySet="tb_BusinessOwners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Investors_tb_Banks" Association="Self.FK_tb_Investors_tb_Banks">
+            <End Role="tb_Banks" EntitySet="tb_Banks" />
+            <End Role="tb_Investors" EntitySet="tb_Investors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Beneficiaries_tb_Investors" Association="Self.FK_tb_Beneficiaries_tb_Investors">
+            <End Role="tb_Investors" EntitySet="tb_Investors" />
+            <End Role="tb_Beneficiaries" EntitySet="tb_Beneficiaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_BusinessApplications_tb_BusinessOwners" Association="Self.FK_tb_BusinessApplications_tb_BusinessOwners">
+            <End Role="tb_BusinessOwners" EntitySet="tb_BusinessOwners" />
+            <End Role="tb_BusinessApplications" EntitySet="tb_BusinessApplications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_BusinessApplications_tb_Users" Association="Self.FK_tb_BusinessApplications_tb_Users">
+            <End Role="tb_Users" EntitySet="tb_Users" />
+            <End Role="tb_BusinessApplications" EntitySet="tb_BusinessApplications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_BusinessApplications_tb_Users1" Association="Self.FK_tb_BusinessApplications_tb_Users1">
+            <End Role="tb_Users" EntitySet="tb_Users" />
+            <End Role="tb_BusinessApplications" EntitySet="tb_BusinessApplications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Disbursements_tb_BusinessApplications" Association="Self.FK_tb_Disbursements_tb_BusinessApplications">
+            <End Role="tb_BusinessApplications" EntitySet="tb_BusinessApplications" />
+            <End Role="tb_Disbursements" EntitySet="tb_Disbursements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Guarantors_tb_BusinessApplications" Association="Self.FK_tb_Guarantors_tb_BusinessApplications">
+            <End Role="tb_BusinessApplications" EntitySet="tb_BusinessApplications" />
+            <End Role="tb_Guarantors" EntitySet="tb_Guarantors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Repayments_tb_BusinessApplications" Association="Self.FK_tb_Repayments_tb_BusinessApplications">
+            <End Role="tb_BusinessApplications" EntitySet="tb_BusinessApplications" />
+            <End Role="tb_Repayments" EntitySet="tb_Repayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_BusinessOwners_tb_BusinessCategory" Association="Self.FK_tb_BusinessOwners_tb_BusinessCategory">
+            <End Role="tb_BusinessCategory" EntitySet="tb_BusinessCategory" />
+            <End Role="tb_BusinessOwners" EntitySet="tb_BusinessOwners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_BusinessOwners_tb_Role" Association="Self.FK_tb_BusinessOwners_tb_Role">
+            <End Role="tb_Role" EntitySet="tb_Role" />
+            <End Role="tb_BusinessOwners" EntitySet="tb_BusinessOwners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Directors_tb_BusinessOwners" Association="Self.FK_tb_Directors_tb_BusinessOwners">
+            <End Role="tb_BusinessOwners" EntitySet="tb_BusinessOwners" />
+            <End Role="tb_Directors" EntitySet="tb_Directors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Investments_tb_Investments" Association="Self.FK_tb_Investments_tb_Investments">
+            <End Role="tb_InvestmentPackages" EntitySet="tb_InvestmentPackages" />
+            <End Role="tb_Investments" EntitySet="tb_Investments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Investments_tb_Investors" Association="Self.FK_tb_Investments_tb_Investors">
+            <End Role="tb_Investors" EntitySet="tb_Investors" />
+            <End Role="tb_Investments" EntitySet="tb_Investments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Investors_tb_Role" Association="Self.FK_tb_Investors_tb_Role">
+            <End Role="tb_Role" EntitySet="tb_Role" />
+            <End Role="tb_Investors" EntitySet="tb_Investors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Investors_tb_Users" Association="Self.FK_tb_Investors_tb_Users">
+            <End Role="tb_Users" EntitySet="tb_Users" />
+            <End Role="tb_Investors" EntitySet="tb_Investors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Users_tb_Users" Association="Self.FK_tb_Users_tb_Users">
+            <End Role="tb_Role" EntitySet="tb_Role" />
+            <End Role="tb_Users" EntitySet="tb_Users" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="InvestisDBModelStoreContainer" CdmEntityContainer="InvestisDBEntities" >
-          <EntitySetMapping Name="tb_Role">
-            <EntityTypeMapping TypeName="InvestisDBModel.tb_Role">
-              <MappingFragment StoreEntitySet="tb_Role">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Role" ColumnName="Role" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+        <EntityContainerMapping StorageEntityContainer="InvestisDBModelStoreContainer" CdmEntityContainer="InvestisDBEntities1">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="InvestisDBModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tb_Users">
-            <EntityTypeMapping TypeName="InvestisDBModel.tb_Users">
-              <MappingFragment StoreEntitySet="tb_Users">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="Role" ColumnName="Role" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="HashPassword" ColumnName="HashPassword" />
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="InvestisDBModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="InvestisDBModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="InvestisDBModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="InvestisDBModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DivisionID" ColumnName="DivisionID" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="BusinessName" ColumnName="BusinessName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_Banks">
             <EntityTypeMapping TypeName="InvestisDBModel.tb_Banks">
               <MappingFragment StoreEntitySet="tb_Banks">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="BankName" ColumnName="BankName" />
                 <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_Beneficiaries">
             <EntityTypeMapping TypeName="InvestisDBModel.tb_Beneficiaries">
               <MappingFragment StoreEntitySet="tb_Beneficiaries">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="SortCode" ColumnName="SortCode" />
-                <ScalarProperty Name="BankID" ColumnName="BankID" />
-                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
-                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
-                <ScalarProperty Name="Relationship" ColumnName="Relationship" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="InvestorID" ColumnName="InvestorID" />
                 <ScalarProperty Name="BeneficiaryID" ColumnName="BeneficiaryID" />
+                <ScalarProperty Name="InvestorID" ColumnName="InvestorID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Relationship" ColumnName="Relationship" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="SortCode" ColumnName="SortCode" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_BusinessApplications">
             <EntityTypeMapping TypeName="InvestisDBModel.tb_BusinessApplications">
               <MappingFragment StoreEntitySet="tb_BusinessApplications">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="GraceDate" ColumnName="GraceDate" />
-                <ScalarProperty Name="ExpectedRepaymentEndDate" ColumnName="ExpectedRepaymentEndDate" />
-                <ScalarProperty Name="RepaymentStartDate" ColumnName="RepaymentStartDate" />
-                <ScalarProperty Name="IsFullyRecovered" ColumnName="IsFullyRecovered" />
-                <ScalarProperty Name="DisbursementDate" ColumnName="DisbursementDate" />
-                <ScalarProperty Name="DisbursementDetails" ColumnName="DisbursementDetails" />
-                <ScalarProperty Name="DisburserUserID" ColumnName="DisburserUserID" />
-                <ScalarProperty Name="IsDisbursed" ColumnName="IsDisbursed" />
-                <ScalarProperty Name="VerificationDate" ColumnName="VerificationDate" />
-                <ScalarProperty Name="VerificationDetails" ColumnName="VerificationDetails" />
-                <ScalarProperty Name="VerifierUserID" ColumnName="VerifierUserID" />
-                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
-                <ScalarProperty Name="SortCode" ColumnName="SortCode" />
-                <ScalarProperty Name="BankID" ColumnName="BankID" />
-                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
-                <ScalarProperty Name="MonthlyRepayment" ColumnName="MonthlyRepayment" />
-                <ScalarProperty Name="RepaymentDuration" ColumnName="RepaymentDuration" />
-                <ScalarProperty Name="MaxFund" ColumnName="MaxFund" />
-                <ScalarProperty Name="MinFund" ColumnName="MinFund" />
-                <ScalarProperty Name="DefiniteFund" ColumnName="DefiniteFund" />
-                <ScalarProperty Name="RepaymentPlan" ColumnName="RepaymentPlan" />
-                <ScalarProperty Name="ExpectedAmount" ColumnName="ExpectedAmount" />
-                <ScalarProperty Name="BusinessID" ColumnName="BusinessID" />
                 <ScalarProperty Name="AppID" ColumnName="AppID" />
+                <ScalarProperty Name="BusinessID" ColumnName="BusinessID" />
+                <ScalarProperty Name="ExpectedAmount" ColumnName="ExpectedAmount" />
+                <ScalarProperty Name="RepaymentPlan" ColumnName="RepaymentPlan" />
+                <ScalarProperty Name="DefiniteFund" ColumnName="DefiniteFund" />
+                <ScalarProperty Name="MinFund" ColumnName="MinFund" />
+                <ScalarProperty Name="MaxFund" ColumnName="MaxFund" />
+                <ScalarProperty Name="RepaymentDuration" ColumnName="RepaymentDuration" />
+                <ScalarProperty Name="MonthlyRepayment" ColumnName="MonthlyRepayment" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="SortCode" ColumnName="SortCode" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="VerifierUserID" ColumnName="VerifierUserID" />
+                <ScalarProperty Name="VerificationDetails" ColumnName="VerificationDetails" />
+                <ScalarProperty Name="VerificationDate" ColumnName="VerificationDate" />
+                <ScalarProperty Name="IsDisbursed" ColumnName="IsDisbursed" />
+                <ScalarProperty Name="DisburserUserID" ColumnName="DisburserUserID" />
+                <ScalarProperty Name="DisbursementDetails" ColumnName="DisbursementDetails" />
+                <ScalarProperty Name="DisbursementDate" ColumnName="DisbursementDate" />
+                <ScalarProperty Name="IsFullyRecovered" ColumnName="IsFullyRecovered" />
+                <ScalarProperty Name="RepaymentStartDate" ColumnName="RepaymentStartDate" />
+                <ScalarProperty Name="ExpectedRepaymentEndDate" ColumnName="ExpectedRepaymentEndDate" />
+                <ScalarProperty Name="GraceDate" ColumnName="GraceDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_BusinessCategory">
             <EntityTypeMapping TypeName="InvestisDBModel.tb_BusinessCategory">
               <MappingFragment StoreEntitySet="tb_BusinessCategory">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="BusinessCategoryName" ColumnName="BusinessCategoryName" />
                 <ScalarProperty Name="BusinessCatID" ColumnName="BusinessCatID" />
+                <ScalarProperty Name="BusinessCategoryName" ColumnName="BusinessCategoryName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_BusinessOwners">
             <EntityTypeMapping TypeName="InvestisDBModel.tb_BusinessOwners">
               <MappingFragment StoreEntitySet="tb_BusinessOwners">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
-                <ScalarProperty Name="BankID" ColumnName="BankID" />
-                <ScalarProperty Name="SortCode" ColumnName="SortCode" />
-                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
-                <ScalarProperty Name="Logo" ColumnName="Logo" />
-                <ScalarProperty Name="CaCDocument" ColumnName="CaCDocument" />
-                <ScalarProperty Name="BusinessCatID" ColumnName="BusinessCatID" />
-                <ScalarProperty Name="AvgMonthlyTax" ColumnName="AvgMonthlyTax" />
-                <ScalarProperty Name="AvgMonthlyExpensis" ColumnName="AvgMonthlyExpensis" />
-                <ScalarProperty Name="AvgMonthlyIncome" ColumnName="AvgMonthlyIncome" />
-                <ScalarProperty Name="IncorporationNo" ColumnName="IncorporationNo" />
-                <ScalarProperty Name="DateOfCorporation" ColumnName="DateOfCorporation" />
-                <ScalarProperty Name="Business_Description" ColumnName="Business_Description" />
-                <ScalarProperty Name="Office_Phone" ColumnName="Office_Phone" />
-                <ScalarProperty Name="Address2" ColumnName="Address2" />
-                <ScalarProperty Name="Address1" ColumnName="Address1" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="BusinessID" ColumnName="BusinessID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Office_Phone" ColumnName="Office_Phone" />
+                <ScalarProperty Name="Business_Description" ColumnName="Business_Description" />
+                <ScalarProperty Name="DateOfCorporation" ColumnName="DateOfCorporation" />
+                <ScalarProperty Name="IncorporationNo" ColumnName="IncorporationNo" />
+                <ScalarProperty Name="AvgMonthlyIncome" ColumnName="AvgMonthlyIncome" />
+                <ScalarProperty Name="AvgMonthlyExpensis" ColumnName="AvgMonthlyExpensis" />
+                <ScalarProperty Name="AvgMonthlyTax" ColumnName="AvgMonthlyTax" />
+                <ScalarProperty Name="BusinessCatID" ColumnName="BusinessCatID" />
+                <ScalarProperty Name="CaCDocument" ColumnName="CaCDocument" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="SortCode" ColumnName="SortCode" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Country">
+            <EntityTypeMapping TypeName="InvestisDBModel.tb_Country">
+              <MappingFragment StoreEntitySet="tb_Country">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_Directors">
             <EntityTypeMapping TypeName="InvestisDBModel.tb_Directors">
               <MappingFragment StoreEntitySet="tb_Directors">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Dir_Means_of_ID" ColumnName="Dir_Means_of_ID" />
-                <ScalarProperty Name="Dir_Phone" ColumnName="Dir_Phone" />
-                <ScalarProperty Name="Dir_Email" ColumnName="Dir_Email" />
-                <ScalarProperty Name="Dir_FullName" ColumnName="Dir_FullName" />
-                <ScalarProperty Name="BusinessID" ColumnName="BusinessID" />
                 <ScalarProperty Name="DirectorID" ColumnName="DirectorID" />
+                <ScalarProperty Name="BusinessID" ColumnName="BusinessID" />
+                <ScalarProperty Name="Dir_FullName" ColumnName="Dir_FullName" />
+                <ScalarProperty Name="Dir_Email" ColumnName="Dir_Email" />
+                <ScalarProperty Name="Dir_Phone" ColumnName="Dir_Phone" />
+                <ScalarProperty Name="Dir_Means_of_ID" ColumnName="Dir_Means_of_ID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_Disbursements">
             <EntityTypeMapping TypeName="InvestisDBModel.tb_Disbursements">
               <MappingFragment StoreEntitySet="tb_Disbursements">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="DisbursementComment" ColumnName="DisbursementComment" />
-                <ScalarProperty Name="DisbursementDate" ColumnName="DisbursementDate" />
-                <ScalarProperty Name="AmountAppliedFor" ColumnName="AmountAppliedFor" />
-                <ScalarProperty Name="AmountRemainig" ColumnName="AmountRemainig" />
-                <ScalarProperty Name="AmountDisbursed" ColumnName="AmountDisbursed" />
-                <ScalarProperty Name="AppID" ColumnName="AppID" />
                 <ScalarProperty Name="DisbursmentID" ColumnName="DisbursmentID" />
+                <ScalarProperty Name="AppID" ColumnName="AppID" />
+                <ScalarProperty Name="AmountDisbursed" ColumnName="AmountDisbursed" />
+                <ScalarProperty Name="AmountRemainig" ColumnName="AmountRemainig" />
+                <ScalarProperty Name="AmountAppliedFor" ColumnName="AmountAppliedFor" />
+                <ScalarProperty Name="DisbursementDate" ColumnName="DisbursementDate" />
+                <ScalarProperty Name="DisbursementComment" ColumnName="DisbursementComment" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_Guarantors">
             <EntityTypeMapping TypeName="InvestisDBModel.tb_Guarantors">
               <MappingFragment StoreEntitySet="tb_Guarantors">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="VerificationDate" ColumnName="VerificationDate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="GuarantorPhoneNo" ColumnName="GuarantorPhoneNo" />
-                <ScalarProperty Name="GuarantorEmail" ColumnName="GuarantorEmail" />
-                <ScalarProperty Name="GuarantorLastName" ColumnName="GuarantorLastName" />
-                <ScalarProperty Name="GuarantorFirstName" ColumnName="GuarantorFirstName" />
-                <ScalarProperty Name="AppID" ColumnName="AppID" />
                 <ScalarProperty Name="GurantorID" ColumnName="GurantorID" />
+                <ScalarProperty Name="AppID" ColumnName="AppID" />
+                <ScalarProperty Name="GuarantorFirstName" ColumnName="GuarantorFirstName" />
+                <ScalarProperty Name="GuarantorLastName" ColumnName="GuarantorLastName" />
+                <ScalarProperty Name="GuarantorEmail" ColumnName="GuarantorEmail" />
+                <ScalarProperty Name="GuarantorPhoneNo" ColumnName="GuarantorPhoneNo" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="VerificationDate" ColumnName="VerificationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_InvestmentPackages">
             <EntityTypeMapping TypeName="InvestisDBModel.tb_InvestmentPackages">
               <MappingFragment StoreEntitySet="tb_InvestmentPackages">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="InterestPerMonth" ColumnName="InterestPerMonth" />
-                <ScalarProperty Name="MinInvestmentDuration" ColumnName="MinInvestmentDuration" />
-                <ScalarProperty Name="MaxInvAmt" ColumnName="MaxInvAmt" />
-                <ScalarProperty Name="MinInvestAmt" ColumnName="MinInvestAmt" />
-                <ScalarProperty Name="PackageName" ColumnName="PackageName" />
                 <ScalarProperty Name="InvestmentPackageID" ColumnName="InvestmentPackageID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tb_Investors">
-            <EntityTypeMapping TypeName="InvestisDBModel.tb_Investors">
-              <MappingFragment StoreEntitySet="tb_Investors">
+                <ScalarProperty Name="PackageName" ColumnName="PackageName" />
+                <ScalarProperty Name="MinInvestAmt" ColumnName="MinInvestAmt" />
+                <ScalarProperty Name="MaxInvAmt" ColumnName="MaxInvAmt" />
+                <ScalarProperty Name="MinInvestmentDuration" ColumnName="MinInvestmentDuration" />
+                <ScalarProperty Name="InterestPerMonth" ColumnName="InterestPerMonth" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
-                <ScalarProperty Name="SortCode" ColumnName="SortCode" />
-                <ScalarProperty Name="BankID" ColumnName="BankID" />
-                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="InvestorID" ColumnName="InvestorID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tb_Repayments">
-            <EntityTypeMapping TypeName="InvestisDBModel.tb_Repayments">
-              <MappingFragment StoreEntitySet="tb_Repayments">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="RepaymentComment" ColumnName="RepaymentComment" />
-                <ScalarProperty Name="ExpectedRepaymentEndDate" ColumnName="ExpectedRepaymentEndDate" />
-                <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
-                <ScalarProperty Name="AmountRemaining" ColumnName="AmountRemaining" />
-                <ScalarProperty Name="TotalRepaid" ColumnName="TotalRepaid" />
-                <ScalarProperty Name="CurrentRepayment" ColumnName="CurrentRepayment" />
-                <ScalarProperty Name="RepaymentDate" ColumnName="RepaymentDate" />
-                <ScalarProperty Name="AppID" ColumnName="AppID" />
-                <ScalarProperty Name="RepaymentID" ColumnName="RepaymentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_Investments">
             <EntityTypeMapping TypeName="InvestisDBModel.tb_Investments">
               <MappingFragment StoreEntitySet="tb_Investments">
-                <ScalarProperty Name="InvestorID" ColumnName="InvestorID" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ExpectedMaturityDate" ColumnName="ExpectedMaturityDate" />
-                <ScalarProperty Name="InvestmentDate" ColumnName="InvestmentDate" />
-                <ScalarProperty Name="InvestmentAmt" ColumnName="InvestmentAmt" />
-                <ScalarProperty Name="InvestmentPackageID" ColumnName="InvestmentPackageID" />
                 <ScalarProperty Name="InvestmentID" ColumnName="InvestmentID" />
+                <ScalarProperty Name="InvestorID" ColumnName="InvestorID" />
+                <ScalarProperty Name="InvestmentPackageID" ColumnName="InvestmentPackageID" />
+                <ScalarProperty Name="InvestmentAmt" ColumnName="InvestmentAmt" />
+                <ScalarProperty Name="InvestmentDate" ColumnName="InvestmentDate" />
+                <ScalarProperty Name="ExpectedMaturityDate" ColumnName="ExpectedMaturityDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tb_Investors">
+            <EntityTypeMapping TypeName="InvestisDBModel.tb_Investors">
+              <MappingFragment StoreEntitySet="tb_Investors">
+                <ScalarProperty Name="InvestorID" ColumnName="InvestorID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="SortCode" ColumnName="SortCode" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Repayments">
+            <EntityTypeMapping TypeName="InvestisDBModel.tb_Repayments">
+              <MappingFragment StoreEntitySet="tb_Repayments">
+                <ScalarProperty Name="RepaymentID" ColumnName="RepaymentID" />
+                <ScalarProperty Name="AppID" ColumnName="AppID" />
+                <ScalarProperty Name="RepaymentDate" ColumnName="RepaymentDate" />
+                <ScalarProperty Name="CurrentRepayment" ColumnName="CurrentRepayment" />
+                <ScalarProperty Name="TotalRepaid" ColumnName="TotalRepaid" />
+                <ScalarProperty Name="AmountRemaining" ColumnName="AmountRemaining" />
+                <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
+                <ScalarProperty Name="ExpectedRepaymentEndDate" ColumnName="ExpectedRepaymentEndDate" />
+                <ScalarProperty Name="RepaymentComment" ColumnName="RepaymentComment" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Role">
+            <EntityTypeMapping TypeName="InvestisDBModel.tb_Role">
+              <MappingFragment StoreEntitySet="tb_Role">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Users">
+            <EntityTypeMapping TypeName="InvestisDBModel.tb_Users">
+              <MappingFragment StoreEntitySet="tb_Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="HashPassword" ColumnName="HashPassword" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="InvestisDBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

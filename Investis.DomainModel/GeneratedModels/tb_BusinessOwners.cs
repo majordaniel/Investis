@@ -22,7 +22,7 @@ namespace Investis.DomainModel.GeneratedModels
         }
     
         public int BusinessID { get; set; }
-        public Nullable<int> UserID { get; set; }
+        public string UserID { get; set; }
         public Nullable<int> RoleID { get; set; }
         public string Email { get; set; }
         public string Address1 { get; set; }
@@ -46,12 +46,12 @@ namespace Investis.DomainModel.GeneratedModels
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<bool> IsActive { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         public virtual tb_Banks tb_Banks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_BusinessApplications> tb_BusinessApplications { get; set; }
         public virtual tb_BusinessCategory tb_BusinessCategory { get; set; }
         public virtual tb_Role tb_Role { get; set; }
-        public virtual tb_Users tb_Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_Directors> tb_Directors { get; set; }
     }
