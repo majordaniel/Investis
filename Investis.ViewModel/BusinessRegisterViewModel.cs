@@ -24,13 +24,21 @@ namespace Investis.ViewModel
         [EmailAddress(ErrorMessage = "Invalid email")]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "Mobile can't be blank")]
         public string Mobile { get; set; }
 
+       [Required(ErrorMessage = "Business Name can't be blank")]
         public string BusinessName { get; set; }
+
+        [Required(ErrorMessage = "Address can't be blank")]
         public string Address { get; set; }
 
+
+        [Required(ErrorMessage = "City can't be blank")]
         public string City { get; set; }
 
+
+        [Required(ErrorMessage = "Country can't be blank")]
         public string CountryID { get; set; }
     }
 }

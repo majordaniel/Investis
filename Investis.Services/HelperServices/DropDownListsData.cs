@@ -7,26 +7,22 @@ using System.Threading.Tasks;
 
 namespace Investis.Services.HelperServices
 {
+    
     public class DropDownListsData
     {
-        InvestisDBEntities db = new InvestisDBEntities();
-        public object CountryListDropDown()
+        InvestisDBEntities db;
+        public DropDownListsData()
         {
-            //List<tb_Country> Countries = db.tb_Country.ToList(); 
-           var  Countries = from countr in db.tb_Country
-                                         select new AllCountries
-                                         {
-                                             CountryID = countr.CountryID,
-                                             CountryName = countr.CountryName
-                                         };
-            
-            return Countries.ToList();
+            db = new InvestisDBEntities();
+        }
+   
+        public List<tb_Country> CountryListDropDown()
+        {
+            List<tb_Country> Countries = db.tb_Country.ToList();
+
+            return Countries;
         }
     }
 
-    internal class AllCountries
-    {
-        public int CountryID { get; set; }
-        public string CountryName { get; set; }
-    }
+  
 }

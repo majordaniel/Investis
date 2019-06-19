@@ -26,7 +26,7 @@ namespace Investis.Web.Identity.Repository.Implementations
         InvestisDBEntities db;
         public AccessRepository()
         {
-            //var db = new ApplicationDbContext();
+            var db = new ApplicationDbContext();
         }
         public bool CheckUserExistence(string Email)
         {

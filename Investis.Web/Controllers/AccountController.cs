@@ -1,8 +1,11 @@
-﻿using Investis.Services.HelperServices;
+﻿using Investis.DomainModel.GeneratedModels;
+using Investis.Services.HelperServices;
 using Investis.ViewModel;
 using Investis.Web.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -11,9 +14,26 @@ namespace Investis.Web.Controllers
 {
     public class AccountController : Controller
     {
+        DropDownListsData ddlists;
+        InvestisDBEntities db;
+        public AccountController(DropDownListsData dropDown, InvestisDBEntities dBEntities )
+        {
+            ddlists = dropDown;
+            db = dBEntities;
+        }
+        public ActionResult Register2()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Register2(BusinessRegisterViewModel rvm)
+        {
+            return View();
+        }
         // GET: Account
         public ActionResult Index()
         {
+          
             return View();
         }
 
@@ -21,9 +41,18 @@ namespace Investis.Web.Controllers
         {
 
             DropDownListsData ddlists = new DropDownListsData();
-            //ViewBag.VCountryList = new SelectList(Countries, "CountryID", "CountryName");
+            var Countries = ddlists.CountryListDropDown();
+            ViewBag.VCountryList = new SelectList(Countries, "CountryID", "CountryName");
 
-            ViewBag.VCountryList = ddlists.CountryListDropDown();
+
+            //InvestisDBEntities db = new InvestisDBEntities();
+            //List<tb_Country> list = db.tb_Country.ToList();     
+            //ViewBag.VCountryList = new SelectList(list, "CountryID", "CountryName");
+
+
+           
+
+
             return View();
         }
 
@@ -67,7 +96,7 @@ namespace Investis.Web.Controllers
             else
             {
                 ModelState.AddModelError("My Error", "Invalid data");
-                return View();
+                return View(rvm);
             }
         }
         public ActionResult Login()

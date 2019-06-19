@@ -63,6 +63,7 @@ namespace Investis.Web
                .Include("~/assets/js/app.min.js");
                 scriptBundle
                .Include("~/assets/js/scripts/dashboard_ecommerce.js");
+
                 // scriptBundle
                 //.Include("");
                 // scriptBundle

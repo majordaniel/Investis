@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Investis.DomainModel.GeneratedModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +9,10 @@ namespace Investis.Web.Controllers
 {
     public class HomeController : Controller
     {
+        InvestisDBEntities db = new InvestisDBEntities();
         public ActionResult Index()
         {
+            
             return View();
         }
 

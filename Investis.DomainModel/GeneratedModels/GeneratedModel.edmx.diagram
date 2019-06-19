@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f70ece7a931c400ebfbea89e655efadb" Name="Diagram1">
+      <Diagram DiagramId="15e4fa3c32f34dd8b588885efe2ad57b" Name="Diagram1">
         <EntityTypeShape EntityType="InvestisDBModel.C__MigrationHistory" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvestisDBModel.AspNetRole" Width="1.5" PointX="1.5" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="InvestisDBModel.AspNetUserClaim" Width="1.5" PointX="3" PointY="33" IsExpanded="true" />
         <EntityTypeShape EntityType="InvestisDBModel.AspNetUserLogin" Width="1.5" PointX="3" PointY="35.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InvestisDBModel.AspNetUser" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.AspNetUser" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="InvestisDBModel.tb_Banks" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvestisDBModel.tb_Beneficiaries" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
         <EntityTypeShape EntityType="InvestisDBModel.tb_BusinessApplications" Width="1.5" PointX="6" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="InvestisDBModel.tb_BusinessCategory" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_BusinessCategory" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="InvestisDBModel.tb_BusinessOwners" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="InvestisDBModel.tb_Country" Width="1.5" PointX="3.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvestisDBModel.tb_Directors" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
@@ -23,7 +23,7 @@
         <EntityTypeShape EntityType="InvestisDBModel.tb_Investments" Width="1.5" PointX="5.25" PointY="20.5" IsExpanded="true" />
         <EntityTypeShape EntityType="InvestisDBModel.tb_Investors" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvestisDBModel.tb_Repayments" Width="1.5" PointX="8.25" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="InvestisDBModel.tb_Role" Width="1.5" PointX="0.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestisDBModel.tb_Role" Width="1.5" PointX="0.75" PointY="18.375" IsExpanded="true" />
         <EntityTypeShape EntityType="InvestisDBModel.tb_Users" Width="1.5" PointX="3.75" PointY="24.375" IsExpanded="true" />
         <AssociationConnector Association="InvestisDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="InvestisDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />

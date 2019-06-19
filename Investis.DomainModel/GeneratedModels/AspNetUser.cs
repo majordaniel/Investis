@@ -41,7 +41,8 @@ namespace Investis.DomainModel.GeneratedModels
         public string BusinessName { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
-        public string CountryID { get; set; }
+        public string State { get; set; }
+        public Nullable<int> CountryID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
