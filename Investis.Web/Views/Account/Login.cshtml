@@ -44,19 +44,24 @@
             {
             <div class="form-row mx-auto" style="width:300px">
                 <div class="form-group col-md-12">
-                    @Html.LabelFor(temp => temp.Username)
+                    @*@Html.LabelFor(temp => temp.Username)
                     @Html.TextBoxFor(temp => temp.Username, new { placeholder = "Username", @class = "form-control form-control-air" })
-                    @Html.ValidationMessageFor(temp => temp.Username)
+                    @Html.ValidationMessageFor(temp => temp.Username)*@
+
+                   <input class = "form-control form-control-air" name="Username" value="" type="text"  placeholder="UserName" data-val="true" data-val-required="Em is required"  data-va-email="Enter Em" />
                 </div>
                 <div class="form-group col-md-12">
-                    @Html.LabelFor(temp => temp.Password)
-                    @Html.PasswordFor(temp => temp.Password, new { placeholder = "Password", @class = "form-control form-control-air" })
-                    @Html.ValidationMessageFor(temp => temp.Password)
+                    @*@Html.LabelFor(temp => temp.Password)
+        @Html.PasswordFor(temp => temp.Password, new { placeholder = "Password", @class = "form-control form-control-air" })
+        @Html.ValidationMessageFor(temp => temp.Password)*@
+
+                    <input class = "form-control form-control-air" name="Password" value="" type="password"  placeholder="Password" data-val="true" data-val-required="Pass is required" data-va-email="Enter Pass" />
+
                 </div>
 
                 @Html.ValidationSummary()
 
-                <button type="submit" class="btn btn-primary btn-rounded btn-block btn-air">Login</button>
+                <button  type="submit" class="btn btn-primary btn-rounded btn-block btn-air">Login</button>
             </div>
         }
         </div>

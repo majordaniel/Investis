@@ -10,6 +10,8 @@ namespace Investis.Web.Controllers
     public class HomeController : Controller
     {
         InvestisDBEntities db = new InvestisDBEntities();
+
+        [Authorize]
         public ActionResult Index()
         {
             
